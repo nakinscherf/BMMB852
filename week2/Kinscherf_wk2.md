@@ -71,7 +71,7 @@ A quick internet search produced a page from the Genome Sciences Centre claiming
 This also appears to be an early version of the "assembled" genome, and fairly recent. That there haven't been updates to the build makes me wonder if there's a very limited number of groups working on this, which would also slow the process of fully assembling the genome.
 
 File Kinscherf_wk2.txt added to GitHub repository nakinscherf/BMMB852
-https://github.com/nakinscherf/BMMB852/blob/main/Kinscherf_wk2.txt
+https://github.com/nakinscherf/BMMB852/blob/main/week2/Kinscherf_wk2.txt
 
 File Kinscherf_wk2.md added to GitHub repository nakinscherf/BMMB852
-https://github.com/nakinscherf/BMMB852/blob/main/Kinscherf_wk2.md
+https://github.com/nakinscherf/BMMB852/blob/main/week2/Kinscherf_wk2.md
