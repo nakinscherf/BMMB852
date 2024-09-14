@@ -1,0 +1,5 @@
+NZ_CP115841.1	.	CDS	1000	1500	.	+	.	Parent=transcript1;ID=cds1
+NZ_CP115841.1	.	CDS	2000	2500	.	-	.	Parent=transcript1;ID=cds2 
+NZ_CP115845.1	.	CDS	3000	3300	.	+	.	Parent=transcript2;ID=cds3
+NZ_CP115845.1	.	CDS	3400	3600	.	+	.	Parent=transcript2;ID=cds4
+NZ_CP115845.1	.	CDS	3700	4100	.	+	.	Parent=transcript2;ID=cds5
