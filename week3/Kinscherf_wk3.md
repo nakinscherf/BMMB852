@@ -47,6 +47,7 @@ Not all genes seem to be aligned with start & stop codons. Tried changing transl
 See hw3_img2.png and hw3_img2.png
 ![hw3_img2.png](https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img2.png)
 ![hw3_img3.png] (https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img3.png)
+
 (Strand flipped for same region; look @ start/stop codon placement relative to beginning & end of visible genes).
 
 Manually created GFF file & organized in VSC.
