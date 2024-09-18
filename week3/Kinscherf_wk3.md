@@ -45,8 +45,10 @@ Output: 5544 lines vs 190 lines. Does appear to be 1 feature/line. Upload's not 
 
 Not all genes seem to be aligned with start & stop codons. Tried changing translation table to bacterial plastids & saw no change (switched back to standard). Flipping strand seemed to help with some but not all.
 See hw3_img2.png and hw3_img2.png
+```bash
 ![https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img2.png]
 ![https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img3.png]
+```
 (Strand flipped for same region; look @ start/stop codon placement relative to beginning & end of visible genes).
 
 Manually created GFF file & organized in VSC.
@@ -56,7 +58,9 @@ code intervals.gff
 ```
 Created CDS features in two separate chromosomes. File uploaded to repository (https://github.com/nakinscherf/BMMB852/blob/main/week3/intervals.gff).
 Loaded intervals.gff into IGV with Agrobacterium tumefaciens reference sequence from NCBI dataset. See hw3_img4.png and hw3_img5.png
+```bash
 ![https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img4.png]
 ![https://github.com/nakinscherf/BMMB852/blob/main/week3/hw3_img5.png]
+```
 
 Creation of GFF file that functions in IGV successful. Assignment uploaded to repository at https://github.com/nakinscherf/BMMB852/blob/main/week3/Kinscherf_wk3.md
