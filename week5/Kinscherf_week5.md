@@ -36,6 +36,8 @@ Compressed files: 13 MB/file
 
 According to ChatGPT, Illumina reads commonly run around 150bp. You could get the same coverage by using 150bp read length and 267,000 reads. For me this requires getting out a calculator rather than quick mental math, so 100bp is a convenient estimate that isn't too far from the capacity of the instrument. However, read number couldn't be reduced by very much while using the same sequencing instrument.
 
+Script committed to repository at https://github.com/nakinscherf/BMMB852/edit/main/week5/week5.sh
+
 ### Part 3
 
 The Agrobacterium genome is roughly 6 Mbp, and the file size is 5.8 Mb. Rounding up to 6 Mb for simpler math, there's about a 1bp/1 byte ratio.
@@ -48,3 +50,4 @@ From one file with 300,000 reads of 100bp/read, the file size is roughly 72 MB. 
 | Drosophila | 165 Mbp     | 165 MB         | 24,750,000       | 5.9 GB             | 1.1 GB                  |
 | Human      | 3.2 Gbp     | 3.2 GB         | 480,000,000      | 115.2 GB           | 20.6 GB                 |
 
+Report committed to repository at https://github.com/nakinscherf/BMMB852/edit/main/week5/Kinscherf_week5.md
