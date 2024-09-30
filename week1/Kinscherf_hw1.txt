@@ -1,0 +1,29 @@
+Lecture 1
+
+1-3. I know the installation worked because I was able to get a clean bill of "health" from doctor.py. Entering the rest of the commands on the software set-up page also produced the same results shown in the handbook, leading me to believe that my new environment has access to the tools that should have been installed.
+
+4-5. I am able to run samtools. It is version 1.20. Entering "samtools" with no commands or parameters brings up a list of commands for samtools.
+
+6. https://github.com/nakinscherf/BMMB852
+
+Links to an external site.
+
+Lecture 2
+
+1. I identified the command "diff" which can compare two files and show where the contents differ. We will probably have more tailored bioinformatics tools for the purpose, but I believe this command could be useful for looking at two very similar files, such as a gene sequence where one file contains a reference sequence and the other contains the genotyping results of a potential mutant. Using "diff" could quickly identify small variations in the text that would be easy to skim over by eye.
+
+2. Using -i, it is possible to ignore case differences in the contents of two files being compared to diff. In the example I gave above, this could be helpful if the reference sequence and the genotyping results were given in uppercase and lowercase, and not matching cases. The flag -y could also be used to output the differences in a side-by-side comparison of two columns.
+
+3. Using -h with -l will make the ls command adjust the units on the file sizes to keep the values to ~4 digits.
+
+4. The flag -i will make rm ask for confirmation before attempting to remove each file, while -I will make rm ask for confirmation before removing more than three files at once.
+
+5-7. One file I created is file1.txt.
+
+Absolute path from root: /Users/nkinscherf/work/bmmb852/file1.txt
+
+Relative path from current directory, bmmb852: ./file1.txt
+
+Shortcut from home: ~/work/bmmb852.txt
+
+Shortcut from parent directory, work: ../bmmb852/file1.txt
