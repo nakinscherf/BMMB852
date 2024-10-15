@@ -2,7 +2,7 @@
 
 ### Part 1: Writing a script
 
-Rewrote Kinscherf_wk2.md as a bash script titled **week4.sh**. Uploaded to GitHub repository at the following link: https://github.com/nakinscherf/BMMB852/blob/main/week4/week4.sh
+Rewrote Kinscherf_wk2.md as a bash script titled **week4.sh**. Uploaded to GitHub repository at the following link: https://github.com/nakinscherf/BMMB852/blob/main/week04/week4.sh
 
 **Notes on script:** I found in the process of writing the script that one of my original commands did not retrieve the correct information (total number of genomic features in the file), so that value is different when the script is used to retrieve the information. (46268 originally, now finding 1108663, which does make more sense.)
 
@@ -91,4 +91,4 @@ Its **child terms** are c_d_box_snoRNA (SO:0002095), h_aca_box_snoRNA (SO:000059
 
 While troubleshooting the "bio explain" command, I looked at the definition of snoRNA as it's given on the Sequence Ontology website, and later had that page up to compare with the results from "bio explain snorna." I found that the definition given by the "bio explain" command was easier to understand at a glance than the definition given on the web page. This was largely because the command gave a more general picture of function for the entire group, rather than digging into specific modifications.
 
-Report uploaded to repository at https://github.com/nakinscherf/BMMB852/blob/main/week4/Kinscherf_wk4rep.md
+Report uploaded to repository at https://github.com/nakinscherf/BMMB852/blob/main/week04/Kinscherf_wk4rep.md
