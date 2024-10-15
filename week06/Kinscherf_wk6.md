@@ -9,27 +9,27 @@ doi: 10.1128/jb.136.3.909-915.1978
 
 Authors were compairing biotype 2 strains of *Agrobacterium tumefaciens* and *A. radiobacter* to study plasmids associated with virulence and whether different strategies used by bacterial pathogens could be mutually exclusive
 
-Coding followed wk6.sh (https://github.com/nakinscherf/BMMB852/blob/main/week6/wk6.sh)
+Coding followed wk6.sh (https://github.com/nakinscherf/BMMB852/blob/main/week06/wk6.sh)
 
 From the first 10,000 reads of this WGS, I received the following quality checks on the paired-end reads:
 
 ### Read 1
-![SRR20415233_1FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_1FQC.png)
+![SRR20415233_1FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_1FQC.png)
 ### Read 2
-![SRR20415233_2FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_2FQC.png)
+![SRR20415233_2FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_2FQC.png)
 
 I tested both --cut_tail and --cut_right for cleaning the data.
 
 ## --cut_tail
 ### Read 1
-![SRR20415233_1FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_1FQC.png)
+![SRR20415233_1FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_1FQC.png)
 ### Read 2
-![SRR20415233_2FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_2FQC.png)
+![SRR20415233_2FQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_2FQC.png)
 ## --cut_right
 ### Read 1
-![SRR20415233_1TrFQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_1TrFQC.png)
+![SRR20415233_1TrFQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_1TrFQC.png)
 ### Read 2
-![SRR20415233_2TrFQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week6/SRR20415233_2TrFQC.png)
+![SRR20415233_2TrFQC.png](https://github.com/nakinscherf/BMMB852/blob/main/week06/SRR20415233_2TrFQC.png)
 
 I decided to keep --cut_right in my script, because it resulted in a much greater shift into the positive base quality. However, I also noticed the following for total base counts in each report:
 
@@ -46,4 +46,4 @@ Another difference I saw was in sequence length distribution. Each of the origin
 
 In my script, I have left cut-right as the executable command. However, it can be easily commented out, and the cut-tail equivalent un-commented-out.
 
-Uploaded to repository at https://github.com/nakinscherf/BMMB852/blob/main/week6/Kinscherf_wk6.md
+Uploaded to repository at https://github.com/nakinscherf/BMMB852/blob/main/week06/Kinscherf_wk6.md
