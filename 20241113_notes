@@ -1,0 +1,46 @@
+## 20241113 BMMB852 lecture
+### Kinscherf notes
+
+- usegalaxy.org
+  - open-source web-based platform for data intensive biomedical research
+  - interface for looking at data
+  - Istvan doesn't like/use it personally
+  - we're trying to "break" Galaxy/see if we can replicate results
+
+```bash
+mkdir galaxy
+cd galaxy
+```
+
+- taking a Makefile to test (Nikol's wk10 Makefile)
+- opening Galaxy website
+- Get Data
+- NCBI Datasets Genomes
+- can use accession, BioProject accession, NCBI assembly
+  - needs version #
+- NCBI accession ID (GCA_#) is "real" ID (RefSeq)
+  - underscore
+  - GenBank ID is different: 2 digits + number
+    - GCF_# is RefSeq genome
+    - GCA_# is GenBank genome
+    - (I might have gotten these backwards...)
+
+using SARS-CoV-2
+
+- galaxy should be able to take parameters and build interface
+  - writing scripts in the bg
+  - tell it what information you want from the accession you input
+- started tool to generate NCBI Genome Datasets: Data Report output
+  - Istvan REALLY does not like Galaxy, thinks many details in data report output are junk
+    - have to know details that would go in command line anyway
+    - "this is a way to do things more slowly and frustratingly"
+  - can download your genome FASTA
+- visualize --> display with IGV (IGV needs to be open first)
+  - Get Data
+  - Download and Extract Reads in FASTQ format from NCBI SRA
+- can Nikol's Makefile run before we can get Galaxy to output same results??
+  - Galaxy hasn't even started download when we have FASTQ files from command line
+
+- comparing Galaxy output for alignments to Makefile output
+  - looks fine, took a bit to load in
+- comparing Galaxy output for 
