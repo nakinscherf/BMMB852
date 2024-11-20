@@ -10,3 +10,5 @@
 8. Aligning FASTQ reads to the genome for BAM files
 9. Filtering a BAM file
 10. Generating a variant call file
+11. Establishing variant effects with VEP
+12. Automation
