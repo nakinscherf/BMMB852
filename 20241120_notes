@@ -1,0 +1,102 @@
+## 2024-11-20 BMMB852 Lecture: automation with parallel
+### Kinscherf notes
+
+- automation: from processing one sample to hundreds
+
+- opened BioProject comma separated values file: interested in run_accession vs sample_alias
+- making a mock Makefile
+    - this doesn't actually do anything except print text and wait, just example for how to automate + substitute
+```bash
+SRR=SRR12345
+NAME=sample
+.ONESHELL:
+
+all:
+    @echo "# Running analysis for $(SRR) and $(NAME)"
+    @SLEEP_TIME=$$(shuf -i 1-4 -n 1); sleep $$SLEEP_TIME;
+    @echo "# Done $$SLEEP_TIME"
+```
+- how we've been substituting variables up to now:
+```bash
+make NAME=foo and SRR=123
+```
+- how to automate subbing in many different accessions and names?
+    - writing a program to write another program
+        - tool to "write/repeat" process and another to "queue" process
+    - going from single process to multiple: pipeline
+        - identifying pattern to run each step
+            - *e.g.* SRR=SRR*
+            - Istvan doesn't like this one
+        - cycling between getting and processing samples
+
+- why not pattern matching?
+    - pattern matching not explicit
+    - code depends on file it matches, order of matches not specified
+    - subtle bugs, wrong results
+    - "unreadable and ugly code"
+
+- how to automate instead?
+    - find roots of data; smallest piece of info to identify sample
+    - construct commands from roots --> build out
+    - use GNU parallel
+        - tool to launch other programs in parallel
+
+```bash
+parallel echo Hello {} ::: A B C
+        command  pattern input source
+```
+prints
+- Hello A
+- Hello B
+- Hello C
+
+```bash
+parallel --dryrun -j 2 echo Hello {} more words ::: A B C
+```
+- dryrun will tell you what it's going to run/order
+- -j # to run # things at once in parallel
+    - max # things to run in parallel must ≤ # cores in CPU
+
+```bash
+parallel -j 2 -t 2 echo Hello {} more words ::: A B C ::: D F G
+parallel -j 3 echo Hello {} more words ::: A B C ::: D F G
+parallel -j 3 echo Hello {} and {} and {} ::: A B C ::: D F G
+```
+
+- the design
+    - design starts as empty csv file
+    - associates various attributes with the files
+```bash
+code design.csv
+```
+Run,Name
+
+SRR123,SampleA
+
+SRR124,SampleB
+
+SRR125,SampleC
+
+```bash
+cat design.csv | parallel --colsep , --header : echo make all RUN={1} NAME={2}
+# assign variable names by column #
+cat design.csv | parallel --colsep , --header : echo make all RUN={Run} NAME={Name}
+# assign variable names by column name
+```
+- going back to BioProject file
+```bash
+cat samples.csv | parallel --colsep , --header : echo make all RUN={run_accession} NAME={sample_alias}
+cat samples.csv | head -5 | parallel --colsep , --header : echo make all RUN={run_accession} NAME={sample_alias}
+```
+- can now run Makefile on all 892 samples without changing variables out manually
+    - figure out some way of glancing through results to make sure everything ran properly
+- create an automation pipeline
+- more tips for using parallel at: gnu.org/software/parallel/parallel_tutorial.html
+    - person who made tool wants you to use ```bash parallel --citation ``` if you use it for a project but Istvan disapproves of this
+- Istvan's tutorials for parallel: 
+    - biostarhandbook.com/books/scripting/parallel-mastery/
+    - biostarhandbook.com/books/scripting/parallel-loops/
+- Istvan's tutorial for automating loops:
+    - biostarhandbook.com/books/scripting/bash-loops/
+    - don't use whatever explicit looping is
+    - don't use "for"
