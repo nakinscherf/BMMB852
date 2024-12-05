@@ -77,6 +77,7 @@ That being said, the 2020 study observed proportionately far more variants in NZ
 > NZ_CP115844.1: 01.62% \
 > NZ_CP115845.1: 01.04% \
 > NZ_CP115841.1: 06.60%
+> 
 This determined that although the chromosomes are much longer than the plasmids, proportionately more variants were occurring on the chromosomes than the plasmids. Although I did not make the same comparison for the variants called in the accession from the 1978 study, this would refute my hypothesis in assignment 10, where I speculated that many variants between A136 and the reference genome could be related to virulence. As all four plasmids contain less variation than the chromosomes, the virulence plasmid cannot be the source of most of the variants. This also suggests that the greater proportion of variants on particular chromosomes is not related to an author focus on sequencing those regions, since the authors were more interested in the virulence plasmids.
 
 Although one interpretation of the differences in plasmid variant counts between the 1978 study and the 2020 study could be greater variation in the plasmids from strains collected in the 1990s, compared to A136, I suspect that what actually happened was an improvement in the technology for sequencing plasmids.
