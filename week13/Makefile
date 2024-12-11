@@ -18,9 +18,9 @@ GENPATH=ncbi_dataset/data/${ACC}
 # Reference genome
 REF=${GENPATH}/${GENF}
 # SRR number
-SRR=SRR30415233
-# Name of the sample (see bio search SRR30415233)
-SAMPLE=EML171
+SRR=SRR30539278
+# Name of the sample (see bio search SRR10999774)
+SAMPLE=pssA_67_1
 # Name of GFF file
 GFF=refs/agrobacterium_tumefaciens.gff
 # Number of reads to sample
@@ -28,21 +28,10 @@ N=300000
 # File names for SRR reads to write to
 R1=reads/${SRR}_1.fastq
 R2=reads/${SRR}_2.fastq
-# File names for trimmed SRR reads to write to
-T1=reads/${SRR}_1.trimmed.fastq
-T2=reads/${SRR}_2.trimmed.fastq
 # SRR reads directory
 RDIR=reads
-# reports directory
-PDIR=reports
 # Name for BAM file
 BAM=${SAMPLE}.bam
-# Resulting compressed variant VCF file
-VCF ?= vcf/$(notdir $(basename ${BAM})).vcf.gz
-# Additional bcf flags for pileup annotation.
-PILE_FLAGS =  -d 100 --annotate 'INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP'
-# Additional bcf flags for calling process.
-CALL_FLAGS = --ploidy 2 --annotate 'FORMAT/GQ'
 
 # Creating help target
 usage:
@@ -51,13 +40,10 @@ usage:
 	@echo "Targets in this file include:"
 	@echo "make genome	# download and unzip genome and GFF files"
 	@echo "make index	# index genome and GFF files"
-	@echo "make download	# download ${SRR} FASTQ files and run fastqc"
-	@echo "make trim	# trim ${SRR} FASTQ files and run fastqc"
+	@echo "make reads	# download ${SRR} FASTQ files and run fastqc"
 	@echo "make align	# align trimmed ${SRR} reads to the reference genome"
-	@echo "make vcf	# call variants in ${BAM} compared to the reference genome"
-	@echo "make index_vcf	# merge all currently existing VCF files into one file, then index merged file"
-	@echo "make vep	# predict variant effects of merged VCF file using vep environment"
-	@echo "make all	# run download, trim, index, align, vcf targets"
+	@echo "make count	# create a count matrix from BAM files currently in the folder"
+	@echo "make all	# run genome, index, reads, align, and counts targets"
 
 genome:
 	mkdir -p refs
@@ -68,60 +54,32 @@ genome:
 	# Moving the GFF file
 	mv ncbi_dataset/data/${ACC}/genomic.gff ${GFF}
 
-index: ${GFF} ${REF}
+index: ${REF}
 	@# Index the genome
-	bwa index ${REF}
-	# Sort and compress the GFF file
-	cat ${GFF} | sort -k1,1 -k4,4n -k5,5n -t$$'\t' | bgzip -c > ${GFF}.gz
-	# Index the GFF file
-	tabix -p gff ${GFF}.gz
+	hisat2-build ${REF} ${REF}-index
 
-download: 
-	@# make necessary directories for reads and outputs
-	mkdir -p ${RDIR} ${PDIR}
-	# Downloading SRR files from SRA
+reads: 
+	@# make necessary directories for reads
+	mkdir -p ${RDIR}
+	# Downloading SRR files from SRA database
 	fastq-dump -X ${N} --split-files -O ${RDIR} ${SRR}
-	# Running fastqc on downloaded SRR files
-	fastqc -q -o ${PDIR} ${R1} ${R2}
 
-trim: ${R1} ${R2}
-	@# Trimming the reads
-	fastp --cut_right -i ${R1} -I ${R2} -o ${T1} -O ${T2}
-
-align: ${T1} ${T2}
-	@# Align the downloaded and trimmed reads to the genome, sort the alignment files and convert to BAM format.
-	bwa mem ${REF} ${T1} ${T2} | samtools sort > ${BAM}
+align: ${R1} ${R2}
+	@# Align the downloaded reads to the genome, sort the alignment files and convert to BAM format.
+	hisat2 -x ${REF}-index -1 ${R1} -2 ${R2} | samtools sort > ${BAM}
 	# Index the BAM file from the downloaded reads.
 	samtools index ${BAM}
 
-vcf: ${BAM}
-	@# Use bcftools to call variants in ${BAM} and report those in a VCF file
-	mkdir -p vcf
-	bcftools mpileup ${PILE_FLAGS} -O u -f ${REF} ${BAM} | \
-		bcftools call ${CALL_FLAGS} -mv -O u | \
-		bcftools norm -f ${REF} -d all -O u | \
-		bcftools sort -O z > ${VCF}
-	bcftools index ${VCF}
+count:
+	@# To more easily visualize alignments in IGV, compile all current BAM files in the folder into one file, then index merged file
+	#samtools merge -o merged_reads.bam *.bam
+	#samtools index merged_reads.bam
+	# Create a count matrix from all current BAM files
+	featureCounts -a ${GFF} -t gene -g ID -o matrix.txt *.bam
 
-index_vcf:
-	# Merge VCF files into a single one.
-	bcftools merge -0 vcf/*.vcf.gz -O z > merged.vcf.gz
-	bcftools index merged.vcf.gz
-
-vep: merged.vcf.gz ${GFF}.gz ${REF}
-	# Run variant effect predictions in vep environment
-	mkdir -p results
-	micromamba run -n vep \
-		~/src/ensembl-vep/vep \
-		-i merged.vcf.gz \
-		-o results/vep.txt \
-		--gff ${GFF}.gz \
-		--fasta ${REF} \
-		--force_overwrite
-	# Show resulting files
-	ls -lh results*
-
-all: download trim align vcf
+all: genome index reads align count
 
 clean:
-	rm -rf ${RDIR} ${PDIR} ncbi_dataset.zip ${REF} fastp.json fastp.html ncbi_dataset md5sum.txt simulate README.md ${GENPATH}/${GENF}.bwt ${GENPATH}/${GENF}.pac ${GENPATH}/${GENF}.ann ${GENPATH}/${GENF}.sa ${GENPATH}/${GENF}.amb ${GENPATH}/${GENF}.fai ${GENPATH}/${GENF}.dict 
+	rm -rf ${RDIR} refs md5sum.txt ncbi_dataset.zip ncbi_dataset README.md *.bam.bai
+
+.PHONY: usage clean
