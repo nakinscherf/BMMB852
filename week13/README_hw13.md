@@ -40,7 +40,7 @@ The Makefile variables for the uploaded file are **currently set to align reads 
 
 ## Assignment 13
 
-I tested my pipeline using a set of samples from an RNA-seq project looking at the transcriptome of *Agrobacterium fabrum* strain C58, which appears to be another taxonimic name for *A. tumefaciens* strain C58 (PRJNA1155898). Out of 18 accessions, I chose 3 samples indicated to be WT, and 3 samples of the pssA variants. In a folder containing my Makefile design file PRJNA1155898.csv, I ran the following commands to produce a count matrix:
+I tested my pipeline using a set of samples from an RNA-seq project looking at the transcriptome of *Agrobacterium fabrum* strain C58, which appears to be another taxonimic name for *A. tumefaciens* strain C58 (PRJNA1155898). Out of 18 accessions, I chose 3 samples indicated to be WT, and 3 samples of the pssA variants. In a folder containing my Makefile design file PRJNA1155898.csv (uploaded at https://github.com/nakinscherf/BMMB852/blob/main/week13/PRJNA1155898.csv), I ran the following commands to produce a count matrix:
 
 ```bash
 make genome index
@@ -73,3 +73,5 @@ Looking at the count matrix by eye, I found the following genes to have relative
 I was intrigued to note that the WT and pssA samples with the same numeral tended to follow roughly the same trend in number of reads compared to the other samples within their group. This was especially prominent with WT_79 and pssA_79. This implies to me that the number indicates batches or groups of samples that were processed at the same time.
 
 At a very rough glance, there didn't appear to be many genes for which all of the WT counts and all of the pssA counts appeared to be consistent. If my hypothesis above that these are different technical replicates is correct, that would be a large contributing factor to the inconsistency. I suspect that if I selected my accessions from the project with more care to the groups, I could have much more consistent outcomes. For example, WT_55_3 and pssA_55_2 are very likely accompanied by WT_55_1, WT_55_2, pssA_55_2, and pssA_55_3, which would be within the same "batch." Running ```bio search PRJNA1155898``` allowed me to confirm the existence of those samples, and the corresponding samples from the other "batches."
+
+This report was uploaded to the repository at https://github.com/nakinscherf/BMMB852/blob/main/week13/README_hw13.md
