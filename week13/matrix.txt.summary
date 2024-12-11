@@ -1,0 +1,13 @@
+Status	WT_55_3.bam	WT_67_1.bam	WT_79_1.bam	pssA_55_2.bam	pssA_67_1.bam	pssA_79_2.bam
+Assigned	112533	67735	51500	60654	49777	52462
+Unassigned_Unmapped	462618	515595	539854	525017	541353	525160
+Unassigned_MappingQuality	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0
+Unassigned_MultiMapping	12113	16389	15093	10961	9498	73312
+Unassigned_Secondary	0	0	0	0	0	0
+Unassigned_Nonjunction	0	0	0	0	0	0
+Unassigned_NoFeatures	8604	2723	1664	4658	2172	3555
+Unassigned_Overlapping_Length	0	0	0	0	0	0
+Unassigned_Ambiguity	12846	9329	2588	6564	4147	2040
