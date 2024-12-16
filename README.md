@@ -12,3 +12,5 @@
 10. Generating a variant call file
 11. Establishing variant effects with VEP
 12. Automation
+13. Creating a count matrix from RNA-seq data
+14. Analyzing differential expression from a count matrix
